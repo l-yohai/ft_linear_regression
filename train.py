@@ -41,12 +41,13 @@ class LinearRegression:
         self.tmp_theta_1 = self.tmp_theta_1 - self.learning_rate * \
             (self.estimatePrice() - self.y).dot(self.x).sum() / len(self.x)
 
-    def unnormalize(self, P, K):
-        DP = max(P) - min(P)
-        DK = max(K) - min(K)
+    def unnormalize(self, price, km):
+        normalized_price = max(price) - min(price)
+        normalized_km = max(km) - min(km)
         return [
-            min(P) + DP * (self.tmp_theta_0 - self.tmp_theta_1 * min(K) / DK),
-            self.tmp_theta_1 * DP / DK
+            min(price) + normalized_price * (self.tmp_theta_0 -
+                                             self.tmp_theta_1 * min(km) / normalized_km),
+            self.tmp_theta_1 * normalized_price / normalized_km
         ]
 
     def cost(self):
