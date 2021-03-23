@@ -17,6 +17,8 @@ if __name__ == '__main__':
                 lines = f.readlines()
                 for x in lines:
                     check_number(float, x)
+    except FileNotFoundError:
+        theta = [0, 0]
     except:
         exit('output 파일에 올바르지 않은 값이 포함되어 있습니다.')
     else:
